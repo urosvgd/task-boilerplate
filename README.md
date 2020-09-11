@@ -20,4 +20,3 @@ yarn start / npm start
  - Change number of runners (depends on how many algorithms you have chosen)
  - Change levels if runner reach goal
  - Draw random obstacles
- - Check whats wrong with eslint
