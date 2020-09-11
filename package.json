@@ -1,0 +1,47 @@
+{
+  "name": "task-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.3",
+    "styled-components": "^5.2.0",
+    "react-icons": "^3.9.0",
+    "react-modal": "^3.11.1",
+    "reset-css": "^5.0.1",
+    "uuid": "^3.4.0",
+    "flow-bin": "^0.117.0",
+    "js-priority-queue": "^0.1.5",
+    "node-sass": "^4.13.1",
+    "open-color": "^1.7.0",
+    "queue-fifo": "^0.2.6"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx": "^0.1.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "eslint": "npx eslint -- ./src/."
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
