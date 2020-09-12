@@ -1,5 +1,4 @@
 import uuidv4 from 'uuid/v4';
-// import Styles from './styles/_variables.scss';
 
 export const Styles = {
 	boardRow: 10,
