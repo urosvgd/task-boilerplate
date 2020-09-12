@@ -22,7 +22,6 @@ const Item = ({ ridx, cidx }) => {
   );
 
   setItemCache.current[KEYS[ridx][cidx]] = setType;
-
   useEffect(() => {
     if (
       type === ITEM_VISITED &&

@@ -6,8 +6,8 @@ import GlobalStyles from './GlobalStyles';
 
 const App = () => (
 	<Provider>
-		<GlobalStyles />
 		<Container />
+		<GlobalStyles />
 	</Provider>
 );
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { Context } from "../../Provider";
 import { KEYS, BOARD, ITEM_CLICKED, ITEM_INITIAL } from "../../constants.js";
 import StyledBoard from "./StyledBoard";
@@ -17,8 +17,6 @@ const Board = () => {
   const onMouseDown = (e) => {
     const ridx = Number(e.target.dataset.ridx);
     const cidx = Number(e.target.dataset.cidx);
-
-
     if (ridx === begin.current.x && cidx === begin.current.y) {
       setDragging({ begin: true, end: false });
     } else if (ridx === end.current.x && cidx === end.current.y) {
@@ -28,7 +26,6 @@ const Board = () => {
       setClicking(true);
     }
   };
-
 
   const onMouseUp = () => {
     setClicking(false);
@@ -56,7 +53,7 @@ const Board = () => {
   const onMouseMove = (e) => {
     if (isVisualized) return;
     if (e.target.className !== "board__item") return;
-    
+
     const ridx = Number(e.target.dataset.ridx);
     const cidx = Number(e.target.dataset.cidx);
 
@@ -82,6 +79,24 @@ const Board = () => {
     }
   };
 
+  const changeColorRandom = (e, mouseMove) => {
+    if (e.target.className !== "board__item") return;
+    const { type } = e.target.dataset;
+    if (type !== ITEM_INITIAL && type === ITEM_CLICKED) return;
+
+    const ridx = Math.floor(Math.random(0, 5) * 10);
+    const cidx = Math.floor(Math.random(0, 5) * 10);
+    const itemType =
+      type === ITEM_CLICKED && !mouseMove ? ITEM_INITIAL : ITEM_CLICKED;
+    updateItem(ridx, cidx, itemType);
+  };
+
+  const randomObstacles = (e) => {
+    for (let i = 0; i < 10; i++) {
+      changeColorRandom(e, true);
+    }
+  };
+
   return (
     <StyledBoard
       className="board"
@@ -92,11 +107,15 @@ const Board = () => {
       role="button"
       tabIndex="0"
     >
+      <button className="board__item" onClick={randomObstacles}>
+        Click
+      </button>
+
       {BOARD.map((row, ridx) => (
         <div className="board__row" key={ridx}>
-          {row.map((col, cidx) => (
-            <Item ridx={ridx} cidx={cidx} key={KEYS[ridx][cidx]} />
-          ))}
+          {row.map((col, cidx) => {
+            return <Item ridx={ridx} cidx={cidx} key={KEYS[ridx][cidx]} />;
+          })}
           <br />
         </div>
       ))}
