@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Data = styled.div`
   display: flex;
@@ -10,5 +10,4 @@ const StyledContainer = styled.div`
   margin-bottom: 2em;
 `;
 
-
-export {Data, StyledContainer};
+export { Data, StyledContainer };

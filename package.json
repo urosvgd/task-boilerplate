@@ -30,7 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "eslint": "npx eslint -- ./src/."
+    "eslint": "npx eslint -- ./src/. --fix"
   },
   "browserslist": {
     "production": [

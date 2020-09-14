@@ -6,7 +6,17 @@ import Item from "../Item/Item";
 
 const Board = () => {
   const context = useContext(Context);
-  const { updateItem, begin, end, isVisualized } = context;
+  const {
+    updateItem,
+    begin,
+    end,
+    isVisualized,
+    currentLevel,
+    pause,
+    setPause,
+    setIsVisualized,
+    clear,
+  } = context;
   const [clicking, setClicking] = useState(false);
   const [dragging, setDragging] = useState({
     begin: false,
@@ -30,19 +40,6 @@ const Board = () => {
   const onMouseUp = () => {
     setClicking(false);
     setDragging({ begin: false, end: false });
-  };
-
-  const changeColor = (e, mouseMove) => {
-    if (e.target.className !== "board__item") return;
-    const { type } = e.target.dataset;
-    if (type !== ITEM_INITIAL && type !== ITEM_CLICKED) return;
-
-    const ridx = Number(e.target.dataset.ridx);
-    const cidx = Number(e.target.dataset.cidx);
-
-    const itemType =
-      type === ITEM_CLICKED && !mouseMove ? ITEM_INITIAL : ITEM_CLICKED;
-    updateItem(ridx, cidx, itemType);
   };
 
   const onClick = (e) => {
@@ -79,23 +76,53 @@ const Board = () => {
     }
   };
 
-  const changeColorRandom = (e, mouseMove) => {
+  const changeColor = (e, mouseMove) => {
     if (e.target.className !== "board__item") return;
     const { type } = e.target.dataset;
-    if (type !== ITEM_INITIAL && type === ITEM_CLICKED) return;
+    if (type !== ITEM_INITIAL && type !== ITEM_CLICKED) return;
 
-    const ridx = Math.floor(Math.random(0, 5) * 10);
-    const cidx = Math.floor(Math.random(0, 5) * 10);
+    const ridx = Number(e.target.dataset.ridx);
+    const cidx = Number(e.target.dataset.cidx);
+
     const itemType =
       type === ITEM_CLICKED && !mouseMove ? ITEM_INITIAL : ITEM_CLICKED;
     updateItem(ridx, cidx, itemType);
   };
 
+  const changeColorRandom = (e) => {
+    if (e.target.className !== "board__item") return;
+    const { type } = e.target.dataset;
+    if (type !== ITEM_INITIAL && type === ITEM_CLICKED) return;
+
+    const getRandomInt = (min, max) => {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+    const ridx = getRandomInt(2, 8);
+    const cidx = getRandomInt(2, 8);
+    const itemType = type === ITEM_CLICKED ? ITEM_INITIAL : ITEM_CLICKED;
+    updateItem(ridx, cidx, itemType);
+  };
+
   const randomObstacles = (e) => {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 1; i < currentLevel; i++) {
       changeColorRandom(e, true);
     }
   };
+  // eslint-disable-next-line
+  const onClearAll = () => {
+    if (isVisualized && !pause) return;
+    if (pause) setPause(false);
+    setIsVisualized(false);
+    clear();
+  };
+
+  useEffect(() => {
+    if (!isVisualized) {
+      onClearAll();
+    }
+  }, [currentLevel, isVisualized, onClearAll]);
 
   return (
     <StyledBoard
@@ -107,15 +134,16 @@ const Board = () => {
       role="button"
       tabIndex="0"
     >
-      <button className="board__item" onClick={randomObstacles}>
-        Click
-      </button>
-
+      <div className="board__row">
+        <button className="board__item" onClick={randomObstacles}>
+          Create Obstacles
+        </button>
+      </div>
       {BOARD.map((row, ridx) => (
         <div className="board__row" key={ridx}>
-          {row.map((col, cidx) => {
-            return <Item ridx={ridx} cidx={cidx} key={KEYS[ridx][cidx]} />;
-          })}
+          {row.map((col, cidx) => (
+            <Item ridx={ridx} cidx={cidx} key={KEYS[ridx][cidx]} />
+          ))}
           <br />
         </div>
       ))}

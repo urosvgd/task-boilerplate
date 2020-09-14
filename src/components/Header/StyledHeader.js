@@ -30,10 +30,6 @@ const StyledHeader = styled.div`
     background-position-x: 100%;
     background-position-y: 5px;
     padding-left: 10px;
-
-    &:disabled {
-      @extend %disabled;
-    }
   }
 
   &__button {
