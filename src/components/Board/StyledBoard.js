@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const sizes = {
-	headerHeight: '10vh',
-	contentHeaderHeight: '9vh',
-	footerHeight: '10vh',
+  headerHeight: "10vh",
+  contentHeaderHeight: "9vh",
+  footerHeight: "10vh",
 };
 
 const StyledBoard = styled.div`
@@ -17,6 +17,7 @@ const StyledBoard = styled.div`
           ${sizes.headerHeight} + ${sizes.contentHeaderHeight} +${sizes.footerHeight}
         )
     );
+    
     &__row {
       display: flex;
       flex-direction: row;
@@ -39,6 +40,7 @@ const StyledBoard = styled.div`
         outline: none;
       }
     }
+    
   }
 `;
 
