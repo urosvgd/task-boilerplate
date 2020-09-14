@@ -15,8 +15,8 @@ yarn start / npm start
 - Styled-Components with scss inside (no css/sass/scss/less files)
 - Error message if there is no way to win
 - Draw random obstacles
+- Change levels if runner reach goal
 
 ### Todos
  - Change number of runners (depends on how many algorithms you have chosen)
- - Change levels if runner reach goal
  
