@@ -3,6 +3,9 @@
 yarn install / npm install
 yarn start / npm start
 ```
+![giphy](https://user-images.githubusercontent.com/17494630/93197321-c6509880-f74b-11ea-85d9-2f42011a4540.gif)
+
+
 # Libraries
  - React, React Hooks
  - styled-components (sass + styled-components)
