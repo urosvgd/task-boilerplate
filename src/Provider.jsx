@@ -30,6 +30,14 @@ const Provider = ({ children }) => {
   const delay = useRef(DELAY_NORMAL);
 
   const updateItem = (ridx, cidx, type = ITEM_FIXED, timeFactor = 0) => {
+    if (
+      ridx === begin.x &&
+      cidx === begin.y &&
+      ridx === end.x &&
+      cidx === end.y
+    )
+      return;
+
     board.current[ridx][cidx] = type;
     const setItem = setItemCache.current[KEYS[ridx][cidx]];
     if (timeFactor) {

@@ -17,8 +17,9 @@ const Container = () => {
     if (!isPathExist) {
       clear();
       setIsErrorOpen(true);
+      context.setCurrentLevel(1);
     }
-  }, [isPathExist, clear]);
+  }, [isPathExist, clear, context]);
 
   const onErrorClose = () => {
     setIsErrorOpen(false);

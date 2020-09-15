@@ -12,9 +12,6 @@ const Board = () => {
     end,
     isVisualized,
     currentLevel,
-    pause,
-    setPause,
-    setIsVisualized,
     clear,
   } = context;
   const [clicking, setClicking] = useState(false);
@@ -27,6 +24,7 @@ const Board = () => {
   const onMouseDown = (e) => {
     const ridx = Number(e.target.dataset.ridx);
     const cidx = Number(e.target.dataset.cidx);
+
     if (ridx === begin.current.x && cidx === begin.current.y) {
       setDragging({ begin: true, end: false });
     } else if (ridx === end.current.x && cidx === end.current.y) {
@@ -36,15 +34,9 @@ const Board = () => {
       setClicking(true);
     }
   };
-
   const onMouseUp = () => {
     setClicking(false);
     setDragging({ begin: false, end: false });
-  };
-
-  const onClick = (e) => {
-    if (isVisualized) return;
-    changeColor(e, false);
   };
 
   const onMouseMove = (e) => {
@@ -89,18 +81,23 @@ const Board = () => {
     updateItem(ridx, cidx, itemType);
   };
 
+  const onClick = (e) => {
+    if (isVisualized) return;
+    changeColor(e, false);
+  };
+
   const changeColorRandom = (e) => {
     if (e.target.className !== "board__item") return;
     const { type } = e.target.dataset;
-    if (type !== ITEM_INITIAL && type === ITEM_CLICKED) return;
+    // if (type !== ITEM_INITIAL && type === ITEM_CLICKED) return;
 
     const getRandomInt = (min, max) => {
       min = Math.ceil(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min + 1)) + min;
     };
-    const ridx = getRandomInt(2, 8);
-    const cidx = getRandomInt(2, 8);
+    const ridx = getRandomInt(1, 9);
+    const cidx = getRandomInt(1, 9);
     const itemType = type === ITEM_CLICKED ? ITEM_INITIAL : ITEM_CLICKED;
     updateItem(ridx, cidx, itemType);
   };
@@ -111,18 +108,14 @@ const Board = () => {
     }
   };
   // eslint-disable-next-line
-  const onClearAll = () => {
-    if (isVisualized && !pause) return;
-    if (pause) setPause(false);
-    setIsVisualized(false);
-    clear();
-  };
+
+  console.log(context);
 
   useEffect(() => {
     if (!isVisualized) {
-      onClearAll();
+      clear();
     }
-  }, [currentLevel, isVisualized, onClearAll]);
+  }, [currentLevel, isVisualized, clear]);
 
   return (
     <StyledBoard
