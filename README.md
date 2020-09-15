@@ -7,16 +7,16 @@ yarn start / npm start
  - React, React Hooks
  - styled-components (sass + styled-components)
 
-# Done
-- Start/end can change by draging 2 black blocks
-- You can draw obstacles
-- Replay on button Run
-- Pathfinding algorithms can be changed (5 algorithms included)
-- Styled-Components with scss inside (no css/sass/scss/less files)
-- Error message if there is no way to win
-- Draw random obstacles
-- Change levels if runner reach goal
 
-### Todos
+## Todos
+- ~~Start/end can change by draging 2 black blocks~~
+- ~~You can draw obstacles~~
+- ~~Replay on button Run~~
+- ~~Pathfinding algorithms can be changed (5 algorithms included)~~
+- ~~Styled-Components with scss inside (no css/sass/scss/less files)~~
+- ~~Error message if there is no way to win~~
+- Draw random obstacles (sometimes appears on starting or ending tile)
+- ~~Draw obstacles with mouse~~
+- ~~Change levels if runner reach goal~~
  - Change number of runners (depends on how many algorithms you have chosen)
  
